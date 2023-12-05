@@ -1,0 +1,78 @@
+function show() {
+    document.getElementById('sidebar').classList.add('active');
+}
+
+
+function hide() {
+    document.getElementById('sidebar').classList.remove('active');
+}
+const carouselImages = document.querySelectorAll('.carousel img');
+const prevButton = document.querySelector('.btn.prev');
+const nextButton = document.querySelector('.btn.next');
+
+let currentIndex = 0;
+
+function changeImage(newIndex) {
+    carouselImages[currentIndex].classList.remove('active');
+    currentIndex = newIndex;
+    carouselImages[currentIndex].classList.add('active');
+}
+
+nextButton.addEventListener('click', () => {
+    changeImage((currentIndex + 1) % carouselImages.length);
+});
+
+prevButton.addEventListener('click', () => {
+    changeImage((currentIndex - 1 + carouselImages.length) % carouselImages.length);
+});
+let currentIndex = 0;
+        let intervalID;
+
+        function changeImage(newIndex) {
+            carouselImages[currentIndex].classList.remove('active');
+            currentIndex = newIndex;
+            carouselImages[currentIndex].classList.add('active');
+        }
+
+        nextButton.addEventListener('click', () => {
+            changeImage((currentIndex + 1) % carouselImages.length);
+        });
+
+        prevButton.addEventListener('click', () => {
+            changeImage((currentIndex - 1 + carouselImages.length) % carouselImages.length);
+        });
+
+        function startSlider() {
+            intervalID = setInterval(() => {
+                changeImage((currentIndex + 1) % carouselImages.length);
+            }, 3000); // Troque as imagens a cada 3 segundos
+        }
+
+        function pauseSlider() {
+            clearInterval(intervalID);
+        }
+
+        startSlider();
+
+        pauseButton.addEventListener('click', () => {
+            pauseButton.textContent === '&#9612;&#9612;' ? pauseSlider() : startSlider();
+            pauseButton.textContent = pauseButton.textContent === '&#9612;&#9612;' ? '&#9658;' : '&#9612;&#9612;';
+        });
+
+        const imgs = document.getElementById('img')
+        const img = document.querySelectorAll('#img img')
+
+        let idx = 0;
+
+        funcion carrossel(){
+
+            idx++;
+
+            if(idx > img.length - 1){
+                idx = 0
+            }
+            
+            img.style.transform = `translateX(${-idx * 500}px)`;
+        }
+
+       setInterval(carrossel, 1800);
